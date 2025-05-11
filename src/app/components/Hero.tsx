@@ -2,24 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-
-// Componente para el rastro del cursor
-const CursorTrail = ({ position }: { position: { x: number; y: number } }) => {
-  return (
-    <motion.div
-      className="pointer-events-none absolute h-32 w-32 rounded-full"
-      style={{
-        background: 'radial-gradient(circle, rgba(0, 123, 255, 0.3) 0%, transparent 70%)',
-        filter: 'blur(8px)',
-        x: position.x - 64,
-        y: position.y - 64,
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    />
-  )
-}
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
 
 export default function Hero() {
   // Referencias y estados para el seguimiento del mouse
@@ -98,9 +83,9 @@ export default function Hero() {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden bg-black text-white"
+      className="relative min-h-screen w-full overflow-hidden bg-[#0A0A0A] text-white"
     >
-      {/* Efecto de cursor principal */}
+      {/* Efecto de cursor y trails */}
       <motion.div
         className="pointer-events-none absolute h-64 w-64 rounded-full"
         animate={{
@@ -129,80 +114,80 @@ export default function Hero() {
         }}
       />
 
-      {/* Rastros del cursor */}
-      {trailPositions.map((pos, index) => (
-        <CursorTrail 
-          key={index} 
-          position={pos} 
-        />
-      ))}
 
-      {/* Contenido principal con efecto parallax */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center px-4 md:px-10 lg:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto max-w-2xl pt-20"
-          style={{
-            perspective: '1000px'
-          }}
-        >
-          <motion.h1 
-            className="relative mb-2 text-center text-4xl font-bold md:text-5xl lg:text-6xl"
-            style={{
-              rotateX: useTransform(y, [-1, 1], [5, -5]),
-              rotateY: useTransform(x, [-1, 1], [-5, 5]),
-              transformStyle: 'preserve-3d',
-              textShadow: '0 0 20px rgba(0, 123, 255, 0.5)'
-            }}
+      {/* Contenido principal */}
+      <div className="absolute inset-0 z-10 flex items-center px-4 md:px-10 lg:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full max-w-7xl mx-auto">
+          {/* Contenido del lado izquierdo */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
           >
-            Jose Angel Velasquez
-            {/* Efecto de separación 3D */}
-            <div 
-              className="absolute left-0 top-0 -z-10 h-full w-full"
+            <span className="inline-block px-4 py-2 bg-blue-500/10 text-blue-400 rounded-full text-sm font-medium">
+              SOLUCIONES DIGITALES
+            </span>
+            
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               style={{
-                transform: 'translateZ(-20px)',
-                color: 'rgba(0, 123, 255, 0.2)',
-                filter: 'blur(4px)'
+                rotateX: useTransform(y, [-1, 1], [5, -5]),
+                rotateY: useTransform(x, [-1, 1], [-5, 5]),
+                transformStyle: 'preserve-3d'
               }}
             >
-              Jose Angel Velasquez
-            </div>
-          </motion.h1>
-          
-          <motion.h2 
-            className="mb-6 text-center text-xl font-light md:text-2xl"
-            style={{
-              rotateX: useTransform(y, [-1, 1], [3, -3]),
-              rotateY: useTransform(x, [-1, 1], [-3, 3]),
-              transformStyle: 'preserve-3d'
-            }}
-          >
-            Desarrollador Web Freelance
-          </motion.h2>
-          
-          <motion.p 
-            className="mb-8 text-center text-lg opacity-80"
-            style={{
-              rotateX: useTransform(y, [-1, 1], [2, -2]),
-              rotateY: useTransform(x, [-1, 1], [-2, 2]),
-              transformStyle: 'preserve-3d'
-            }}
-          >
-            Especializado en componentes e-commerce, integración de pagos y geolocalización para empresas medianas y pequeñas.
-          </motion.p>
-          
-          <div className="flex justify-center">
-            <motion.button
+              Hacemos Tu
+              <br />
+              Negocio
+              <br />
+              <span className="text-blue-400">Diferente</span>
+            </motion.h1>
+            
+            <p className="text-gray-400 text-lg max-w-md">
+              Transformando ideas en experiencias digitales únicas y memorables
+            </p>
+
+            <motion.a
+              href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="rounded-full bg-white px-8 py-3 font-medium text-black transition-colors hover:bg-gray-200"
+              className="inline-flex items-center space-x-3 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-colors"
             >
-              Conoce mis servicios
-            </motion.button>
-          </div>
-        </motion.div>
+              <span>Hablemos</span>
+              <FontAwesomeIcon icon={faEnvelope} className="h-4 w-4" />
+            </motion.a>
+          </motion.div>
+
+          {/* Imagen del lado derecho */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative aspect-square rounded-2xl overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-2xl" />
+            <Image
+              src="/images/profile.jpg"
+              alt="José Ángel Velásquez"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Círculo decorativo */}
+            <motion.div
+              className="absolute -right-4 top-4 h-24 w-24 rounded-full border-2 border-blue-400/30"
+              animate={{
+                rotate: 360
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   )
