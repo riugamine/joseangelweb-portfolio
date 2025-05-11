@@ -7,14 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { ThemeToggle } from './ThemeToggle'
 import { useTheme } from 'next-themes'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 
 export function Navbar() {
@@ -49,48 +41,26 @@ export function Navbar() {
           joseangelweb
         </Link>
 
-        {/* Desktop Menu con Navigation Menu */}
-        <div className="hidden md:flex md:items-center md:space-x-8">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Sobre mí</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="p-4">
-                    <h4 className="mb-2 text-sm font-medium">Mi experiencia</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Desarrollador web especializado en soluciones e-commerce
-                    </p>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Servicios</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
-                    <div className="rounded-lg p-3 hover:bg-accent">
-                      <h4 className="mb-1 text-sm font-medium">E-commerce</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Desarrollo de tiendas online
-                      </p>
-                    </div>
-                    <div className="rounded-lg p-3 hover:bg-accent">
-                      <h4 className="mb-1 text-sm font-medium">Integración de pagos</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Implementación de pasarelas de pago
-                      </p>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="#projects" legacyBehavior passHref>
-                  <NavigationMenuLink>Proyectos</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          
+        {/* Desktop Menu */}
+        <div className="hidden md:flex md:items-center md:space-x-6">
+          <Link
+            href="#about"
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            Sobre mí
+          </Link>
+          <Link
+            href="#services"
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            Servicios
+          </Link>
+          <Link
+            href="#projects"
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            Proyectos
+          </Link>
           <Link
             href="#contact"
             className={`rounded-full px-6 py-2 ${
@@ -105,7 +75,7 @@ export function Navbar() {
           <ThemeToggle />
         </div>
 
-        {/* Mobile Menu con Sheet */}
+        {/* Mobile Menu */}
         <div className="flex items-center space-x-4 md:hidden">
           <ThemeToggle />
           <Sheet>

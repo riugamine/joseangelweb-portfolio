@@ -65,7 +65,7 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="about" className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         {/* Encabezado */}
         <div className="mb-16 text-center">
@@ -125,7 +125,7 @@ export default function About() {
               variants={itemVariants}
               className="text-gray-600 dark:text-gray-300"
             >
-              Soy un desarrollador web freelance de 26 años, viviendo en Margarita, Venezuela. Me especializo en crear componentes e-commerce, integración de pagos, sistemas de tracking con geolocalización y lógica de negocios.
+              Soy un desarrollador web freelance. Me especializo en crear componentes e-commerce, integración de pagos, sistemas de tracking con geolocalización y lógica de negocios.
             </motion.p>
             
             <motion.p 

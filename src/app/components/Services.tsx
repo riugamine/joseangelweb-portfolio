@@ -59,7 +59,7 @@ export default function Services() {
   ]
 
   return (
-    <section id="services" className="py-20 dark:bg-gray-900 transition-colors duration-300">
+    <section id="services" className="py-16 dark:bg-gray-900 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-16 text-center">
           <motion.h2

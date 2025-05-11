@@ -81,7 +81,7 @@ export default function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-24 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
+    <section id="projects" className="py-16 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-16 text-center">
           <motion.h2

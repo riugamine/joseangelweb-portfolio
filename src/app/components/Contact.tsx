@@ -154,14 +154,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
+    <section id="contact" className="relative py-16 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         {/* Encabezado */}
         <div className="mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
             className="mb-4 text-3xl font-bold md:text-4xl dark:text-white"
           >
@@ -170,7 +170,7 @@ export default function Contact() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300"
           >
@@ -184,7 +184,7 @@ export default function Contact() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="space-y-10"
           >
             <motion.div variants={itemVariants}>
@@ -241,7 +241,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="rounded-2xl bg-white p-8 shadow-md dark:bg-gray-800 dark:border dark:border-gray-700"
           >
