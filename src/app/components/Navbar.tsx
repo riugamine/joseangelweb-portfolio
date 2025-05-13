@@ -5,9 +5,11 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { ThemeToggle } from './ThemeToggle'
 import { useTheme } from 'next-themes'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from "@/components/ui/sheet"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -26,6 +28,34 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Enlaces de redes sociales
+  const socialLinks = [
+    {
+      name: 'WhatsApp',
+      icon: faWhatsapp,
+      href: 'https://wa.me/584126893533',
+      color: 'text-green-500'
+    },
+    {
+      name: 'GitHub',
+      icon: faGithub,
+      href: 'https://github.com/riugamine',
+      color: 'text-gray-800 dark:text-white'
+    },
+    {
+      name: 'LinkedIn',
+      icon: faLinkedin,
+      href: 'https://www.linkedin.com/in/jose-velasquez-b2a65b1a1/',
+      color: 'text-blue-600'
+    },
+    {
+      name: 'Instagram',
+      icon: faInstagram,
+      href: 'https://instagram.com/joseangelweb_',
+      color: 'text-pink-600'
+    }
+  ]
 
   return (
     <nav
@@ -84,32 +114,65 @@ export function Navbar() {
                 <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="top" className="w-full">
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
+            <SheetContent side="right" className="w-full max-w-xs p-6">
+              <SheetHeader className="mb-8">
+                <SheetTitle className="text-2xl font-bold">Menu</SheetTitle>
+                <SheetDescription className="text-sm text-gray-500 dark:text-gray-400">
+                  Opciones
+                </SheetDescription>
               </SheetHeader>
-              <div className="mt-6 flex flex-col space-y-4">
-                <Link
-                  href="#about"
-                  className="text-lg font-medium hover:text-gray-600 dark:hover:text-gray-300"
-                >
-                  Sobre mí
-                </Link>
-                <Link
-                  href="#services"
-                  className="text-lg font-medium hover:text-gray-600 dark:hover:text-gray-300"
-                >
-                  Servicios
-                </Link>
-                <Link
-                  href="#projects"
-                  className="text-lg font-medium hover:text-gray-600 dark:hover:text-gray-300"
-                >
-                  Proyectos
-                </Link>
+              
+              <div className="flex flex-col space-y-12">
+                {/* Enlaces de navegación */}
+                <div className="flex flex-col space-y-8">
+                  <Link
+                    href="#about"
+                    className="text-lg font-medium hover:text-blue-500 transition-colors"
+                  >
+                    Sobre mí
+                  </Link>
+                  <Link
+                    href="#services"
+                    className="text-lg font-medium hover:text-blue-500 transition-colors"
+                  >
+                    Servicios
+                  </Link>
+                  <Link
+                    href="#projects"
+                    className="text-lg font-medium hover:text-blue-500 transition-colors"
+                  >
+                    Proyectos
+                  </Link>
+                </div>
+
+                {/* Separador */}
+                <div className="h-px w-full bg-gray-100 dark:bg-gray-800" />
+
+                {/* Redes sociales */}
+                <div className="space-y-6">
+                  <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    CONECTA CONMIGO
+                  </h3>
+                  <div className="grid grid-cols-2 gap-6">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center space-x-3 transition-colors hover:opacity-80 ${social.color}`}
+                      >
+                        <FontAwesomeIcon icon={social.icon} className="h-5 w-5" />
+                        <span className="text-sm">{social.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botón de contacto */}
                 <Link
                   href="#contact"
-                  className="rounded-full bg-black py-2 text-center text-white dark:bg-white dark:text-black"
+                  className="mt-auto w-full rounded-lg bg-blue-500 py-3 text-center text-white transition-colors hover:bg-blue-600"
                 >
                   Contacto
                 </Link>

@@ -14,31 +14,7 @@ const SplineScene = dynamic(() => import('./SplineScene'), {
 export default function Hero() {
   // Referencias y estados para el seguimiento del mouse
   const sectionRef = useRef<HTMLElement>(null)
-  
-  // Valores para el efecto parallax
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  
-  // Configuración del spring para movimiento suave
-  const springConfig = { damping: 15, stiffness: 150 }
-  const x = useSpring(mouseX, springConfig)
-  const y = useSpring(mouseY, springConfig)
 
-  // Efecto para seguimiento del mouse
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect()
-        const centerX = rect.width / 2
-        const centerY = rect.height / 2
-        mouseX.set((e.clientX - rect.left - centerX) / centerX)
-        mouseY.set((e.clientY - rect.top - centerY) / centerY)
-      }
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [mouseX, mouseY])
 
   return (
     <section 
