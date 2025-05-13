@@ -77,6 +77,7 @@ export default function About() {
         "TypeScript",
         "Tailwind CSS",
         "Framer Motion",
+        "3D emgineering",
       ],
       description:
         "Desarrollo de interfaces modernas y responsivas con las últimas tecnologías",

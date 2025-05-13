@@ -2,9 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faCreditCard, faLocationDot, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faCreditCard, faLocationDot, faCode, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useState } from 'react'
 
 export default function Services() {
   const { scrollYProgress } = useScroll()
@@ -42,6 +43,9 @@ export default function Services() {
       color: 'bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-300'
     }
   ]
+
+  // Estado para el hover del botón
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <section id="services" className="relative py-24 dark:bg-gray-900 transition-colors duration-300">
@@ -94,9 +98,46 @@ export default function Services() {
               </CardContent>
             </Card>
           ))}
+
+          {/* Nueva tarjeta Call to Action */}
+          <Card className="col-span-1 md:col-span-4 overflow-hidden transition-all hover:scale-[1.02] relative">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <div>
+                <CardTitle className="text-2xl font-bold dark:text-white">
+                  ¿Listo para Empezar?
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300 mt-2 max-w-lg">
+                  Transformemos tu visión en realidad. Agenda una consulta gratuita y descubre cómo podemos potenciar tu presencia digital.
+                </CardDescription>
+              </div>
+              
+              <motion.div
+                className="absolute top-6 right-6"
+                animate={{ 
+                  x: isHovered ? 10 : 0,
+                  scale: isHovered ? 1.2 : 1
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <FontAwesomeIcon 
+                  icon={faArrowRight} 
+                  className="h-6 w-6 text-blue-500"
+                />
+              </motion.div>
+            </CardHeader>
+            
+            <CardContent>
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center space-x-2 text-blue-500 font-medium hover:text-blue-600 transition-colors"
+                onHoverStart={() => setIsHovered(true)}
+                onHoverEnd={() => setIsHovered(false)}
+              >
+                <span>Conversemos sobre tu proyecto</span>
+              </motion.a>
+            </CardContent>
+          </Card>
         </div>
-
-
       </motion.div>
     </section>
   )

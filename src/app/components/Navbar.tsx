@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Link as ScrollLink } from 'react-scroll'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -68,39 +69,55 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold">
-          joseangelweb
+          JoseAngelWeb
         </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex md:items-center md:space-x-6">
-          <Link
-            href="#about"
-            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          <ScrollLink
+            to="about"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
             Sobre mí
-          </Link>
-          <Link
-            href="#services"
-            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          </ScrollLink>
+          <ScrollLink
+            to="services"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
             Servicios
-          </Link>
-          <Link
-            href="#projects"
-            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          </ScrollLink>
+          <ScrollLink
+            to="projects"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
             Proyectos
-          </Link>
-          <Link
-            href="#contact"
-            className={`rounded-full px-6 py-2 ${
+          </ScrollLink>
+          <ScrollLink
+            to="contact"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            className={`rounded-full px-6 py-2 cursor-pointer ${
               scrolled 
                 ? 'bg-black text-white dark:bg-white dark:text-black' 
                 : 'bg-white text-black dark:bg-gray-800 dark:text-white'
             }`}
           >
             Contacto
-          </Link>
+          </ScrollLink>
           
           <ThemeToggle />
         </div>
@@ -125,24 +142,36 @@ export function Navbar() {
               <div className="flex flex-col space-y-12">
                 {/* Enlaces de navegación */}
                 <div className="flex flex-col space-y-8">
-                  <Link
-                    href="#about"
-                    className="text-lg font-medium hover:text-blue-500 transition-colors"
+                  <ScrollLink
+                    to="about"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className="text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer"
                   >
                     Sobre mí
-                  </Link>
-                  <Link
-                    href="#services"
-                    className="text-lg font-medium hover:text-blue-500 transition-colors"
+                  </ScrollLink>
+                  <ScrollLink
+                    to="services"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className="text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer"
                   >
                     Servicios
-                  </Link>
-                  <Link
-                    href="#projects"
-                    className="text-lg font-medium hover:text-blue-500 transition-colors"
+                  </ScrollLink>
+                  <ScrollLink
+                    to="projects"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className="text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer"
                   >
                     Proyectos
-                  </Link>
+                  </ScrollLink>
                 </div>
 
                 {/* Separador */}

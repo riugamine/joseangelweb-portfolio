@@ -1,7 +1,7 @@
 import './globals.css'
 import { Navbar } from '@/app/components/Navbar'
 import { Footer } from '@/app/components/Footer'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Providers } from './providers'
@@ -9,7 +9,7 @@ import { Providers } from './providers'
 // Prevenir la inyección automática de CSS de FontAwesome
 config.autoAddCss = false
 
-const inter = Inter({ subsets: ['latin'] })
+const mont = Montserrat({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Jose Angel Web | Desarrollador Freelance',
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={mont.className}>
         <Providers>
           <Navbar />
           <main className="min-h-screen">
