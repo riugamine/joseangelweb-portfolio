@@ -3,18 +3,13 @@
 import { useState, useEffect } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { ThemeToggle } from './ThemeToggle'
-import { useTheme } from 'next-themes'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from "@/components/ui/sheet"
-
+import { socialLinks } from '../lib/data'
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const { theme } = useTheme()
   
   // Detectar scroll para cambiar estilo de navbar
   useEffect(() => {
@@ -30,33 +25,7 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Enlaces de redes sociales
-  const socialLinks = [
-    {
-      name: 'WhatsApp',
-      icon: faWhatsapp,
-      href: 'https://wa.me/584126893533',
-      color: 'text-green-500'
-    },
-    {
-      name: 'GitHub',
-      icon: faGithub,
-      href: 'https://github.com/riugamine',
-      color: 'text-gray-800 dark:text-white'
-    },
-    {
-      name: 'LinkedIn',
-      icon: faLinkedin,
-      href: 'https://www.linkedin.com/in/jose-velasquez-b2a65b1a1/',
-      color: 'text-blue-600'
-    },
-    {
-      name: 'Instagram',
-      icon: faInstagram,
-      href: 'https://instagram.com/joseangelweb_',
-      color: 'text-pink-600'
-    }
-  ]
+
 
   return (
     <nav
