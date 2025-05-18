@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { socialLinks } from '../lib/data'
 
 export default function InteractiveContent() {
   return (
@@ -35,15 +36,39 @@ export default function InteractiveContent() {
           Transformando ideas en experiencias digitales únicas y memorables
         </p>
 
-        <motion.a
-          href="#contact"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center space-x-3 bg-[rgba(59,130,246,1)] hover:bg-blue-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-colors backdrop-blur-sm text-sm sm:text-base shadow-lg hover:shadow-blue-500/25"
-        >
-          <span>Hablemos</span>
-          <FontAwesomeIcon icon={faEnvelope} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-        </motion.a>
+        <div className="flex flex-wrap items-center gap-4">
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center space-x-3 bg-[rgba(59,130,246,1)] hover:bg-blue-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-colors backdrop-blur-sm text-sm sm:text-base shadow-lg hover:shadow-blue-500/25"
+          >
+            <span>Hablemos</span>
+            <FontAwesomeIcon icon={faEnvelope} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          </motion.a>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-3">
+            {socialLinks
+              .filter(social => social.name === 'GitHub' || social.name === 'LinkedIn')
+              .map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-white backdrop-blur-sm hover:bg-secondary/20 transition-all ${social.color}`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ type: "spring" }}
+                >
+                  <FontAwesomeIcon icon={social.icon} className="h-5 w-5" />
+                </motion.a>
+              ))}
+          </div>
+        </div>
       </div>
     </motion.div>
   )

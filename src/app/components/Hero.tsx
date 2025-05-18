@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useMotionValue, useSpring, useTransform } from 'framer-motion'
+import {  useRef  } from 'react'
 import dynamic from 'next/dynamic'
 
 // Componente interactivo del cliente cargado dinámicamente

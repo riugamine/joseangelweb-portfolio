@@ -124,7 +124,7 @@ export default function Services() {
                     scale: isHovered ? 1.2 : 1,
                     rotate: isHovered ? 320 : 0
                   }}
-                  transition={{ type: "easy-out", stiffness: 400, damping: 10 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 10 }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
