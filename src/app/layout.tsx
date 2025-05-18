@@ -1,7 +1,7 @@
 import './globals.css'
 import { Navbar } from '@/app/components/Navbar'
 import { Footer } from '@/app/components/Footer'
-import { Montserrat } from 'next/font/google'
+import { Montserrat, Poppins } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Providers } from './providers'
@@ -9,7 +9,8 @@ import { Providers } from './providers'
 // Prevenir la inyección automática de CSS de FontAwesome
 config.autoAddCss = false
 
-const mont = Montserrat({ subsets: ['latin'] })
+const mont = Montserrat({ variable: "--font-montserrat", subsets: ['latin'], display: "swap" })
+const pop = Poppins({variable: "--font-poppins", subsets: ['latin'], display: "swap", weight: "600" })
 
 export const metadata = {
   title: 'Jose Angel Web | Desarrollador Freelance',
@@ -23,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={mont.className}>
+      <body className={`${mont.variable} ${pop.variable}`}>
         <Providers>
           <Navbar />
           <main className="min-h-screen">

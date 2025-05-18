@@ -56,7 +56,7 @@ export default function Services() {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl tracking-tight dark:text-white"
+            className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground"
           >
             Soluciones que Transforman
           </motion.h2>
@@ -65,26 +65,34 @@ export default function Services() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300"
+            className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground"
           >
             Desarrollo web enfocado en resolver problemas reales con elegancia y eficiencia
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <Card
               key={index}
-              className={`${service.size} group hover:shadow-lg transition-all duration-300 bg-card/30 backdrop-blur-sm border-muted`}
+              className={`${service.size} py-6 group hover:shadow-lg transition-all duration-300 bg-card/30 backdrop-blur-sm border-muted relative overflow-hidden`}
             >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                initial={false}
+                whileHover={{ scale: 1.02 }}
+              />
               <CardHeader>
-                <div className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl ${service.color}`}>
+                <motion.div 
+                  className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl ${service.color} group-hover:scale-110 transition-transform duration-300`}
+                  whileHover={{ rotate: 5 }}
+                >
                   <FontAwesomeIcon icon={service.icon} className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl font-bold">
+                </motion.div>
+                <CardTitle className="text-xl font-bold text-foreground">
                   {service.title}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground">
+                <CardDescription className="text-muted-foreground/90">
                   {service.description}
                 </CardDescription>
               </CardHeader>
@@ -94,7 +102,7 @@ export default function Services() {
                     <Badge 
                       key={i} 
                       variant="outline"
-                      className="bg-background/50 border-muted-foreground/20 text-muted-foreground hover:bg-muted/50"
+                      className="bg-background/50 border-muted-foreground/20 text-foreground hover:bg-muted/50 transition-colors duration-300"
                     >
                       {feature}
                     </Badge>
@@ -105,18 +113,18 @@ export default function Services() {
           ))}
 
           {/* Call to Action Card */}
-          <Card className="col-span-2 group hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-blue-900/5 to-purple-900/5 backdrop-blur-sm border-muted">
+          <Card className=" py-6 col-span-1 sm:col-span-2 group hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm border-muted">
             <CardHeader className="flex flex-col items-start">
-              <CardTitle className="text-2xl font-bold flex items-center justify-between w-full">
+              <CardTitle className="text-2xl font-bold flex items-center justify-between w-full text-foreground">
                 ¿Listo para Empezar?
                 <motion.a
                   href="#contact"
                   className="text-primary group-hover:translate-x-2 transition-transform duration-300"
                   animate={{ 
                     scale: isHovered ? 1.2 : 1,
-                    rotate: 320
+                    rotate: isHovered ? 320 : 0
                   }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  transition={{ type: "easy-out", stiffness: 400, damping: 10 }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
@@ -126,7 +134,7 @@ export default function Services() {
                   />
                 </motion.a>
               </CardTitle>
-              <CardDescription className="mt-4 text-lg">
+              <CardDescription className="mt-4 text-base sm:text-lg text-muted-foreground/90">
                 Transformemos tu visión en realidad. Agenda una consulta gratuita y descubre cómo podemos potenciar tu presencia digital.
               </CardDescription>
             </CardHeader>
@@ -134,16 +142,29 @@ export default function Services() {
             <CardContent>
               <div className="flex flex-wrap gap-4">
                 {socialLinks.map((social) => (
-                  <a
+                  <motion.a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors`}
+                    className={`flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 group/social`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <FontAwesomeIcon icon={social.icon} className="h-5 w-5" />
+                    <motion.div
+                      className="relative"
+                      whileHover={{ rotate: 10 }}
+                    >
+                      <FontAwesomeIcon icon={social.icon} className="h-5 w-5" />
+                      <motion.div
+                        className="absolute inset-0 bg-primary/10 rounded-full -z-10 opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"
+                        initial={false}
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                      />
+                    </motion.div>
                     <span className="text-sm font-medium">{social.name}</span>
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </CardContent>

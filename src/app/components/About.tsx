@@ -44,7 +44,7 @@ export default function About() {
   const [showInfo, setShowInfo] = useState(false);
   const { scrollYProgress } = useScroll();
   const infoCardRef = useRef<HTMLDivElement>(null);
-
+  
   useClickOutside(infoCardRef as React.RefObject<HTMLElement>, () => {
     if (showInfo) setShowInfo(false);
   });
@@ -130,11 +130,21 @@ export default function About() {
       description: "Consistencia y dedicación en cada proyecto que emprendo.",
     },
   ];
-
+  const getIconForKey = (key: string) => {
+    const iconMap: { [key: string]: any } = {
+      edad: faClock,
+      sexo: faVenusMars,
+      altura: faRulerVertical,
+      colorOjos: faEye,
+      hobbies: faHeart
+    };
+  
+    return iconMap[key] || faUser; // Retorna faUser como icono por defecto
+  };
   return (
     <section
       id="about"
-      className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300"
+      className="py-16 bg-background transition-colors duration-300"
     >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         {/* Encabezado con efecto parallax */}
@@ -149,7 +159,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl tracking-tight dark:text-white"
+            className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground"
           >
             Solucionador de Problemas
           </motion.h2>
@@ -158,43 +168,45 @@ export default function About() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300"
+            className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground"
           >
             Transformando ideas en soluciones digitales elegantes y eficientes
           </motion.p>
         </motion.div>
 
         {/* Grid principal con diseño bento */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 mb-12">
           {/* Imagen de perfil con icono interactivo */}
-          <Card className="md:col-span-5 overflow-hidden relative group ">
+          <Card className="sm:col-span-1 md:col-span-5 overflow-hidden h-[300px] sm:h-[400px] md:h-[500px] relative group">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative h-[500px] w-full"
+              className="relative h-full w-full"
             >
               <Image
                 src="/images/profile.jpg"
                 alt="José Ángel Velásquez"
                 fill
                 className="object-cover rounded-xl"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 40vw"
                 priority
               />
               {/* Icono interactivo */}
-              <motion.div
-                className="absolute bottom-4 right-4 cursor-pointer"
+              <motion.button
+                className="absolute bottom-4 right-4 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
                 whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => setShowInfo(!showInfo)}
+                aria-label="Mostrar información personal"
               >
-                <div className="bg-white/90 dark:bg-gray-800/90 p-3 rounded-full shadow-lg">
+                <div className="bg-card/90 dark:bg-card-foreground/90 p-3 rounded-full shadow-lg">
                   <FontAwesomeIcon
                     icon={faUser}
-                    className="h-6 w-6 text-blue-500"
+                    className="h-6 w-6 text-primary"
                   />
                 </div>
-              </motion.div>
+              </motion.button>
 
               {/* Panel de información personal */}
               <AnimatePresence>
@@ -204,7 +216,7 @@ export default function About() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
-                    className="absolute inset-0 bg-black/80 backdrop-blur-sm p-6 flex flex-col justify-center space-y-4 rounded-xl"
+                    className="absolute inset-0 bg-card/90 backdrop-blur-sm p-6 flex flex-col justify-center space-y-4 rounded-xl"
                   >
                     {Object.entries(personalInfo).map(([key, value], index) => (
                       <motion.div
@@ -212,21 +224,11 @@ export default function About() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-center space-x-3 text-white"
+                        className="flex items-center space-x-3 text-foreground"
                       >
                         <FontAwesomeIcon
-                          icon={
-                            key === "edad"
-                              ? faClock
-                              : key === "sexo"
-                              ? faVenusMars
-                              : key === "altura"
-                              ? faRulerVertical
-                              : key === "colorOjos"
-                              ? faEye
-                              : faHeart
-                          }
-                          className="h-5 w-5 text-blue-400"
+                          icon={getIconForKey(key)}
+                          className="h-5 w-5 text-primary"
                         />
                         <span className="capitalize">
                           {key.replace(/([A-Z])/g, " $1").toLowerCase()}:
@@ -243,18 +245,18 @@ export default function About() {
           </Card>
 
           {/* Bio principal */}
-          <Card className="md:col-span-7 p-8">
-            <CardContent className="space-y-6">
+          <Card className="sm:col-span-1 md:col-span-7 p-6 sm:p-8 h-auto sm:h-[400px] md:h-[500px] overflow-hidden">
+            <CardContent className="space-y-6 h-full">
               <motion.h3
                 variants={itemVariants}
-                className="text-3xl font-bold dark:text-white"
+                className="text-2xl sm:text-3xl font-bold text-foreground"
               >
                 José Ángel Velásquez
               </motion.h3>
 
               <motion.p
                 variants={itemVariants}
-                className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed"
               >
                 Desarrollador web freelance especializado en transformar
                 problemas complejos en soluciones elegantes. Mi enfoque combina
@@ -264,30 +266,32 @@ export default function About() {
                 usar.
               </motion.p>
 
-              <ScrollArea className="h-[200px] rounded-md border p-4">
-                <div className="space-y-4">
+              <ScrollArea className="h-[calc(80%-200px)] rounded-md border p-4">
+                <div className="space-y-6">
                   {skills.map((skill, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="space-y-2"
+                      className="space-y-3"
                     >
-                      <h4 className="font-semibold text-lg dark:text-white">
+                      <h4 className="font-semibold text-lg text-foreground">
                         {skill.name}
                       </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-muted-foreground">
                         {skill.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {skill.items.map((item, i) => (
-                          <span
+                          <motion.span
                             key={i}
-                            className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm"
+                            className="px-3 py-1 bg-muted/50 text-foreground rounded-full text-sm hover:bg-muted transition-colors duration-300"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                           >
                             {item}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </motion.div>
@@ -300,15 +304,15 @@ export default function About() {
 
         {/* Filosofía */}
         <div>
-          <h3 className="mb-8 text-center text-2xl font-bold dark:text-white">
+          <h3 className="mb-8 text-center text-xl sm:text-2xl font-bold text-foreground">
             Mi Filosofía
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {philosophies.map((philosophy, index) => (
               <Card
                 key={index}
-                className="overflow-hidden transition-all hover:scale-[1.02]"
+                className="overflow-hidden transition-all hover:shadow-lg group"
               >
                 <CardContent className="p-6">
                   <motion.div
@@ -318,16 +322,19 @@ export default function About() {
                     transition={{ delay: index * 0.1 }}
                     className="flex flex-col items-center text-center space-y-4"
                   >
-                    <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                    <motion.div 
+                      className="h-12 w-12 rounded-full bg-muted flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                      whileHover={{ rotate: 5 }}
+                    >
                       <FontAwesomeIcon
                         icon={philosophy.icon}
-                        className="h-6 w-6 text-blue-500"
+                        className="h-6 w-6 text-primary"
                       />
-                    </div>
-                    <h4 className="font-semibold dark:text-white">
+                    </motion.div>
+                    <h4 className="font-semibold text-foreground">
                       {philosophy.title}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-muted-foreground">
                       {philosophy.description}
                     </p>
                   </motion.div>
