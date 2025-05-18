@@ -167,7 +167,7 @@ export default function About() {
         {/* Grid principal con diseño bento */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
           {/* Imagen de perfil con icono interactivo */}
-          <Card className="md:col-span-5 overflow-hidden relative group">
+          <Card className="md:col-span-5 overflow-hidden relative group ">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}

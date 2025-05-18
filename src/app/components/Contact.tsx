@@ -238,7 +238,7 @@ export default function Contact() {
           </motion.div>
           
           {/* Formulario de contacto */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -333,7 +333,7 @@ export default function Contact() {
                 </button>
               </form>
             )}
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
