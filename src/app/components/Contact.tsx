@@ -14,8 +14,8 @@ export default function Contact() {
     {
       icon: faEnvelope,
       title: 'Email',
-      value: 'contacto@joseangelweb.pro',
-      link: 'mailto:contacto@joseangelweb.pro'
+      value: 'jangel9829@gmail.com',
+      link: 'mailto:jangel9829@gmail.com'
     },
     {
       icon: faPhone,

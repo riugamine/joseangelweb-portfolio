@@ -75,10 +75,10 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:contacto@joseangelweb.pro"
+                    href="mailto:jangel9829@gmail.com"
                     className="text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-300"
                   >
-                    contacto@joseangelweb.pro
+                    jangel9829@gmail.com
                   </a>
                 </li>
                 <li>
