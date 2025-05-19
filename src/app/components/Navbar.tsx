@@ -79,7 +79,7 @@ export function Navbar() {
             smooth={true}
             offset={-70}
             duration={500}
-            className={`rounded-full px-6 py-2 cursor-pointer ${
+            className={`rounded-full px-6 py-2 cursor-pointer hover:bg-primary hover:text-white transition-colors  ${
               scrolled 
                 ? 'bg-black text-white dark:bg-white dark:text-black' 
                 : 'bg-white text-black dark:bg-gray-800 dark:text-white'
