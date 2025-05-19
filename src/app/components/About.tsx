@@ -187,7 +187,7 @@ export default function About() {
               className="relative h-full w-full"
             >
               <Image
-                src="/images/profile.jpg"
+                src="https://res.cloudinary.com/da95ksabl/image/upload/v1747675089/profile_m3snnc.jpg"
                 alt="José Ángel Velásquez"
                 fill
                 className="object-cover rounded-xl"
