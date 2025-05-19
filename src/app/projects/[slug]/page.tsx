@@ -19,17 +19,19 @@ import {
   faCalendar,
   faInfo,
 } from "@fortawesome/free-solid-svg-icons";
+
+interface PageParams {
+  params: {
+    slug: string
+  }
+}
 // Helper function to get project by slug
 const getProjectBySlug = (slug: string) => {
   return projects.find((project) => project.slug === slug);
 };
 
 // Generate metadata for SEO
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
   const project = getProjectBySlug(resolvedParams.slug);
 
@@ -41,7 +43,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+export default async function ProjectPage({ params }: PageParams) {
   const resolvedParams = await Promise.resolve(params)
   const project = getProjectBySlug(resolvedParams.slug);
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Hero from '@/app/components/Hero'
 import About from '@/app/components/About'
 import Services from '@/app/components/Services'
@@ -10,7 +10,7 @@ import Contact from '@/app/components/Contact'
 
 export default function Home() {
   const { scrollYProgress } = useScroll()
-  const sections = ['hero', 'about', 'services', 'projects', 'contact']
+  const sections = useMemo(() => ['hero', 'about', 'services', 'projects', 'contact'], [])
   const [activeSection, setActiveSection] = useState(0)
 
   // Función para detectar la sección activa
