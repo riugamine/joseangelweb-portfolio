@@ -20,34 +20,27 @@ import {
   faInfo,
 } from "@fortawesome/free-solid-svg-icons";
 
-interface PageParams {
-  params: {
-    slug: string
-  }
+type PageProps = {
+  params: Promise<{ slug: string }>
 }
-// Helper function to get project by slug
-const getProjectBySlug = (slug: string) => {
-  return projects.find((project) => project.slug === slug);
-};
-
-// Generate metadata for SEO
-export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
-  const project = getProjectBySlug(resolvedParams.slug);
-
-  if (!project) return { title: "Project Not Found" };
+export async function generateMetadata({ params }: PageProps
+): Promise<Metadata> {
+  const resolvedParams = await params
+  const project = projects.find((project) => project.slug === resolvedParams.slug)
+  
+  if (!project) return { title: "Project Not Found" }
 
   return {
     title: `${project.title} | Jose Angel Portfolio`,
     description: project.description,
-  };
+  }
 }
+export default async function ProjectPage({ params }: PageProps
+) {
+  const resolvedParams = await params
+  const project = projects.find((project) => project.slug === resolvedParams.slug)
 
-export default async function ProjectPage({ params }: PageParams) {
-  const resolvedParams = await Promise.resolve(params)
-  const project = getProjectBySlug(resolvedParams.slug);
-
-  if (!project) return notFound();
+  if (!project) return notFound()
   
         {/* Helper function for translations */}
         function translateKey(key: string): string {
