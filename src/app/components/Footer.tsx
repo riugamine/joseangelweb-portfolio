@@ -1,10 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { useTheme } from 'next-themes'
+import { socialLinks } from '../lib/data'
 
 export function Footer() {
   // Hook para detectar el tema actual (claro/oscuro)
@@ -22,27 +21,9 @@ export function Footer() {
     { name: 'Contacto', href: '#contact' }
   ]
   
-  // Redes sociales
-  const socialLinks = [
-    {
-      icon: faGithub,
-      name: 'GitHub',
-      url: 'https://github.com/joseangelweb'
-    },
-    {
-      icon: faLinkedin,
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/joseangelweb'
-    },
-    {
-      icon: faTwitter,
-      name: 'Twitter',
-      url: 'https://twitter.com/joseangelweb'
-    }
-  ]
 
   return (
-    <footer className="bg-white dark:bg-gray-900 transition-colors duration-300">
+    <footer className="bg-white dark:bg-gray-900 transition-colors duration-300 flex justify-center">
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo y descripción */}
@@ -58,7 +39,7 @@ export function Footer() {
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
-                  href={social.url}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-blue-600 hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-blue-600 dark:hover:text-white"
@@ -104,10 +85,10 @@ export function Footer() {
               </li>
               <li>
                 <a 
-                  href="tel:+584241234567" 
+                  href="tel:+584126893533" 
                   className="text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-300"
                 >
-                  +58 424 123 4567
+                  +58 412 689 35 33
                 </a>
               </li>
             </ul>

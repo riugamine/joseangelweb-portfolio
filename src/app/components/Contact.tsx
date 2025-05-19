@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { socialLinks } from '../lib/data'
 
 export default function Contact() {
   // Hook para detectar el tema actual (claro/oscuro)
@@ -112,24 +112,6 @@ export default function Contact() {
     }
   ]
   
-  // Redes sociales
-  const socialLinks = [
-    {
-      icon: faGithub,
-      name: 'GitHub',
-      url: 'https://github.com/joseangelweb'
-    },
-    {
-      icon: faLinkedin,
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/joseangelweb'
-    },
-    {
-      icon: faTwitter,
-      name: 'Twitter',
-      url: 'https://twitter.com/joseangelweb'
-    }
-  ]
   
   // Animaciones
   const containerVariants = {
@@ -224,7 +206,7 @@ export default function Contact() {
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
-                    href={social.url}
+                    href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-600 shadow-sm transition-all hover:bg-blue-600 hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-blue-600 dark:hover:text-white"

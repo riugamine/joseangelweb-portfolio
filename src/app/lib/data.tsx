@@ -1,7 +1,7 @@
 
 import { 
   faGithub, faLinkedin, faReact,
-   faInstagram, faWhatsapp
+   faInstagram, faWhatsapp, faTiktok
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faCode, faLightbulb, faRocket, faServer, faDatabase,
@@ -39,11 +39,15 @@ export const socialLinks = [
       color: 'text-blue-600'
     },
     {
-      name: 'Instagram',
+      icon: faTiktok,
+      name: 'TikTok',
+      href: 'https://tiktok.com/joseangelweb_'
+    },
+    {
       icon: faInstagram,
-      href: 'https://instagram.com/joseangelweb_',
-      color: 'text-pink-600'
-    }
+      name: 'Instagram',
+      href: 'https://instagram.com/joseangelweb_'
+    },
 ]
 export interface Project {
   title: string
