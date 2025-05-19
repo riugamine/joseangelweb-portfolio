@@ -57,7 +57,7 @@ export default function InteractiveContent() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-white backdrop-blur-sm hover:bg-secondary/20 transition-all ${social.color}`}
+                  className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-white backdrop-blur-sm hover:bg-secondary/20 transition-all text-primary`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, x: -20 }}

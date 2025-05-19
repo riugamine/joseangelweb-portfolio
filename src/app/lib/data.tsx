@@ -46,7 +46,7 @@ export const socialLinks = [
     {
       icon: faInstagram,
       name: 'Instagram',
-      href: 'https://instagram.com/joseangelweb_'
+      href: 'https://instagram.com/joseangelvt_'
     },
 ]
 export interface Project {
