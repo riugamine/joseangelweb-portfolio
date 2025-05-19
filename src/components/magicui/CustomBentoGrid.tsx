@@ -23,7 +23,11 @@ interface CustomBentoItemProps {
 export function CustomBentoGrid({ children, className = '' }: CustomBentoGridProps) {
   return (
     <div className={cn(
-      'grid w-full grid-cols-1 md:grid-cols-3 auto-rows-[180px] gap-4 p-4',
+        'grid w-full',
+        'grid-cols-1 sm:grid-cols-2 md:grid-cols-3', // Mejores breakpoints responsivos
+        'auto-rows-[minmax(180px,auto)]', // Altura de fila más flexible
+        'gap-3 sm:gap-4 md:gap-6 lg:gap-8', // Espaciado progresivo
+        'p-2 sm:p-4 md:p-6', // Padding responsivo
       className
     )}>
       {children}
@@ -44,11 +48,16 @@ export function CustomBentoItem({
   return (
     <motion.div 
       className={cn(
-        'group relative overflow-hidden rounded-xl bg-white/5 dark:bg-gray-800/50',
-        'transition-all duration-300 hover:shadow-xl hover:scale-[1.02]',
-        'dark:shadow-[0_-20px_80px_-20px_#ffffff1f_inset] dark:border dark:border-gray-700/50',
-        'backdrop-blur-sm',
-        `md:col-span-${colSpan} md:row-span-${rowSpan}`,
+        'group relative overflow-hidden rounded-xl',
+        'bg-gradient-to-br from-white/5 to-white/10 dark:from-gray-800/50 dark:to-gray-900/50',
+        'transition-all duration-500 ease-out',
+        'hover:shadow-2xl hover:shadow-white/10',
+        'hover:scale-[1.01] hover:-translate-y-0.5',
+        'dark:shadow-[0_-20px_80px_-20px_#ffffff1f_inset]',
+        'dark:border dark:border-white/10',
+        'backdrop-blur-[6px]',
+        colSpan > 1 ? `sm:col-span-${colSpan}` : '',
+        rowSpan > 1 ? `sm:row-span-${rowSpan}` : '',
         className
       )}
       initial={{ opacity: 0, y: 20 }}

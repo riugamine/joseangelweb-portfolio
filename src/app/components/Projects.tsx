@@ -104,11 +104,10 @@ export default function Projects() {
                 <div className="absolute top-4 right-4 flex items-center gap-2">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-        ${
-          project.isLive
-            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-            : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-        }`}
+                    ${project.isLive
+                      ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                      : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                    }`}
                   >
                     <span
                       className={`w-2 h-2 mr-1.5 rounded-full ${
@@ -125,13 +124,17 @@ export default function Projects() {
                   <h3 className="text-xl font-bold text-white mb-3">
                     {project.title}
                   </h3>
+                  <p className="text-sm text-white/90 mb-4">
+                    {project.description}
+                  </p>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies?.map((tech, index) => (
+                    {project.technologies.map((tech, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-white/20 rounded-md text-sm text-white backdrop-blur-sm"
+                        className={`inline-flex items-center px-2 py-1 rounded-md text-sm ${tech.color} bg-white`}
                       >
-                        {tech}
+                        <FontAwesomeIcon icon={tech.icon} className="w-4 h-4 mr-1" />
+                        {tech.name}
                       </span>
                     ))}
                   </div>
@@ -139,11 +142,12 @@ export default function Projects() {
               </Link>
             </motion.div>
           ))}
+
           {/* Animated Notifications Grid */}
           <div className="mt-16 max-w-2xl mx-auto">
             <AnimatedList
               delay={3000}
-              onAnimationEnd={() => console.log("Animation ended")}
+              
             >
               {notifications.map((notification) => (
                 <motion.div
