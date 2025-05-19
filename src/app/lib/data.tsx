@@ -14,7 +14,7 @@ import {
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 export interface SocialLink {
   name: string
-  icon: any
+  icon: IconDefinition
   href: string
   color: string
 }
@@ -533,7 +533,7 @@ export const projects: Project[] = [
 // Animated notifications for call-to-action
 export interface Notification {
   id: string
-  icon: any
+  icon: IconDefinition
   title: string
   description: string
   time: string

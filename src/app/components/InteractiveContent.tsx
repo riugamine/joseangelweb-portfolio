@@ -51,7 +51,7 @@ export default function InteractiveContent() {
           <div className="flex items-center gap-3">
             {socialLinks
               .filter(social => social.name === 'GitHub' || social.name === 'LinkedIn')
-              .map((social, index) => (
+              .map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.href}

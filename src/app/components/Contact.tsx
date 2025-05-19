@@ -1,15 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from 'next-themes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { socialLinks } from '../lib/data'
-import { InteractiveGridPattern } from '@/components/magicui/interactive-grid-pattern'
 import { RetroGrid } from "@/components/magicui/retro-grid";
 export default function Contact() {
   // Hook para detectar el tema actual (claro/oscuro)
-  const { theme } = useTheme()
   
   
   // Datos de contacto

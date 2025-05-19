@@ -22,6 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 // Hook personalizado para detectar clics fuera del elemento
 const useClickOutside = (
   ref: React.RefObject<HTMLElement>,
@@ -131,7 +132,8 @@ export default function About() {
     },
   ];
   const getIconForKey = (key: string) => {
-    const iconMap: { [key: string]: any } = {
+    // 
+    const iconMap: { [key: string]: IconDefinition } = {
       edad: faClock,
       sexo: faVenusMars,
       altura: faRulerVertical,

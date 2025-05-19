@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Progress } from "@/components/ui/progress"
 import {
   CustomBentoGrid,
   CustomBentoItem,
@@ -9,14 +8,6 @@ import { projects } from "@/app/lib/data";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faGithub,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  faExternalLink,
-  faCode,
-  faLightbulb,
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";

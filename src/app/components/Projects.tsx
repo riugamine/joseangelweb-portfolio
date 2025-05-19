@@ -3,14 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { projects, notifications } from "../lib/data";
 import { AnimatedList } from "@/components/magicui/animated-list";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Projects() {
-  // Hook para detectar el tema actual (claro/oscuro)
-  const { theme } = useTheme();
 
   // Animaciones para los proyectos
   const projectVariants = {
@@ -30,15 +27,6 @@ export default function Projects() {
     },
   };
 
-  // Animación para las etiquetas
-  const tagVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3 },
-    },
-  };
 
   return (
     <section

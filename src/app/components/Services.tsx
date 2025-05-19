@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faCreditCard, faLocationDot, faCode, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { useState } from 'react'
 import { socialLinks } from '../lib/data'
 export default function Services() {

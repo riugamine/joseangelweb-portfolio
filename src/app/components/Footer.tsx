@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTheme } from "next-themes";
 import { socialLinks } from "../lib/data";
 
 const navLinks = [
@@ -13,7 +12,6 @@ const navLinks = [
 ];
 
 export function Footer() {
-  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
 
   return (
