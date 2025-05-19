@@ -1,23 +1,16 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useTheme } from 'next-themes'
-
-// Definición de la interfaz para los proyectos
-interface Project {
-  title: string
-  description: string
-  image: string
-  tags: string[]
-  link: string
-  featured?: boolean
-}
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { projects, notifications } from "../lib/data";
+import { AnimatedList } from "@/components/magicui/animated-list";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Projects() {
   // Hook para detectar el tema actual (claro/oscuro)
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   // Animaciones para los proyectos
   const projectVariants = {
@@ -28,60 +21,30 @@ export default function Projects() {
       transition: {
         delay: i * 0.2,
         duration: 0.6,
-        ease: "easeOut"
+        ease: "easeOut",
       },
     }),
     hover: {
       y: -10,
-      transition: { duration: 0.3 }
-    }
-  }
+      transition: { duration: 0.3 },
+    },
+  };
 
   // Animación para las etiquetas
   const tagVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      transition: { duration: 0.3 } 
-    }
-  }
-
-  // Lista de proyectos
-  const projects: Project[] = [
-    {
-      title: "E-commerce Marketplace",
-      description: "Plataforma de comercio electrónico con múltiples vendedores, sistema de pagos integrado y gestión de inventario en tiempo real.",
-      image: "/images/projects/ecommerce.jpg",
-      tags: ["Next.js", "Stripe", "MongoDB", "Tailwind CSS"],
-      link: "#",
-      featured: true
+      transition: { duration: 0.3 },
     },
-    {
-      title: "Sistema de Tracking",
-      description: "Aplicación de seguimiento de envíos con geolocalización en tiempo real para una empresa de logística.",
-      image: "/images/projects/tracking.jpg",
-      tags: ["React", "Node.js", "Google Maps API", "Socket.io"],
-      link: "#"
-    },
-    {
-      title: "Dashboard Analítico",
-      description: "Panel de control para visualización de datos de ventas y métricas de rendimiento con gráficos interactivos.",
-      image: "/images/projects/dashboard.jpg",
-      tags: ["Vue.js", "D3.js", "Firebase", "Vuetify"],
-      link: "#"
-    },
-    {
-      title: "App de Delivery",
-      description: "Aplicación móvil para servicio de entrega de comida con sistema de pedidos y seguimiento en tiempo real.",
-      image: "/images/projects/delivery.jpg",
-      tags: ["React Native", "Redux", "Express", "MongoDB"],
-      link: "#"
-    }
-  ]
+  };
 
   return (
-    <section id="projects" className="py-16 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
+    <section
+      id="projects"
+      className="py-16 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300"
+    >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-16 text-center">
           <motion.h2
@@ -100,7 +63,8 @@ export default function Projects() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300"
           >
-            Una selección de mis trabajos recientes en desarrollo web y aplicaciones.
+            Una selección de mis trabajos recientes en desarrollo web y
+            aplicaciones.
           </motion.p>
         </div>
 
@@ -117,68 +81,102 @@ export default function Projects() {
               viewport={{ once: true, margin: "-100px" }}
               className={`group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-md 
                 transition-all dark:border dark:border-gray-700 
-                ${project.featured ? 'md:col-span-2' : ''}`}
+                ${project.featured ? "md:col-span-2" : ""}`}
             >
-              <div className="relative h-64 w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="mb-2 text-xl font-bold dark:text-white">{project.title}</h3>
-                <p className="mb-6 flex-1 text-gray-600 dark:text-gray-300">{project.description}</p>
-                
-                <div className="mb-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <motion.span
-                      key={tagIndex}
-                      variants={tagVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      className="inline-block rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 
-                        dark:bg-gray-700 dark:text-gray-300"
-                    >
-                      {tag}
-                    </motion.span>
-                  ))}
+              <Link href={`/projects/${project.slug}`} className="relative h-100 w-full overflow-hidden">
+                {project.video ? (
+                  <video
+                    src={project.video}
+                    className="object-cover w-full h-full"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute top-4 right-4 flex items-center gap-2">
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+        ${
+          project.isLive
+            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+            : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+        }`}
+                  >
+                    <span
+                      className={`w-2 h-2 mr-1.5 rounded-full ${
+                        project.isLive
+                          ? "animate-pulse bg-green-500"
+                          : "bg-red-500"
+                      }`}
+                    ></span>
+                    {project.isLive ? "Live" : "Offline"}
+                  </span>
                 </div>
-                
-                <Link 
-                  href={project.link} 
-                  className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 
-                    text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none 
-                    focus:ring-4 focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 
-                    dark:focus:ring-blue-800 transition-colors"
-                >
-                  Ver proyecto
-                  <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </Link>
-              </div>
+                {/* Project Info Overlay */}
+                <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies?.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-white/20 rounded-md text-sm text-white backdrop-blur-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
+          {/* Animated Notifications Grid */}
+          <div className="mt-16 max-w-2xl mx-auto">
+            <AnimatedList
+              delay={3000}
+              onAnimationEnd={() => console.log("Animation ended")}
+            >
+              {notifications.map((notification) => (
+                <motion.div
+                  key={notification.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm mb-4"
+                >
+                  <div className="h-12 w-12 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+                    <FontAwesomeIcon
+                      icon={notification.icon}
+                      className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-white">
+                      {notification.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {notification.description}
+                    </p>
+                  </div>
+                  <span className="text-xs text-gray-400">
+                    {notification.time}
+                  </span>
+                </motion.div>
+              ))}
+            </AnimatedList>
+          </div>
         </div>
-        
-        <div className="mt-12 text-center">
-          <Link 
-            href="/projects" 
-            className="inline-flex items-center justify-center rounded-lg border border-gray-300 
-              bg-white px-5 py-3 text-base font-medium text-gray-700 hover:bg-gray-100 
-              focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 
-              dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          >
-            Ver todos los proyectos
-            <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </Link>
-        </div>
+
       </div>
     </section>
-  )
+  );
 }
