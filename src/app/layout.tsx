@@ -1,6 +1,4 @@
 import './globals.css'
-import { Navbar } from '@/app/components/Navbar'
-import { Footer } from '@/app/components/Footer'
 import { Montserrat, Poppins } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -26,11 +24,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body className={`${mont.variable} ${pop.variable}`}>
         <Providers>
-          <Navbar />
-          <main className="min-h-screen">
             {children}
-          </main>
-          <Footer />
         </Providers>
       </body>
     </html>
