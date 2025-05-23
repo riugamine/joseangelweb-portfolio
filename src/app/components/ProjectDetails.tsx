@@ -9,10 +9,15 @@ import {
   faUsers,
   faCalendar,
   faInfo,
+  faWifi,
+  faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
-import { CustomBentoGrid, CustomBentoItem } from "@/components/magicui/CustomBentoGrid";
+import {
+  CustomBentoGrid,
+  CustomBentoItem,
+} from "@/components/magicui/CustomBentoGrid";
 import { Project } from "@/app/lib/data";
 
 interface ProjectDetailsProps {
@@ -23,13 +28,13 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
   // Helper function for translations
   function translateKey(key: string): string {
     const translations: Record<string, string> = {
-      duration: 'Duración',
-      role: 'Rol',
-      team: 'Equipo',
-      client: 'Cliente',
-      industry: 'Industria',
-      startDate: 'Fecha de Inicio',
-      completionDate: 'Fecha de Finalización'
+      duration: "Duración",
+      role: "Rol",
+      team: "Equipo",
+      client: "Cliente",
+      industry: "Industria",
+      startDate: "Fecha de Inicio",
+      completionDate: "Fecha de Finalización",
     };
     return translations[key] || key;
   }
@@ -56,17 +61,20 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             href="/"
             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all text-sm sm:text-base"
           >
-            <FontAwesomeIcon icon={faArrowLeft} className="w-3 h-3 sm:w-4 sm:h-4" />
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              className="w-3 h-3 sm:w-4 sm:h-4"
+            />
             <span>Volver</span>
           </Link>
         </nav>
 
-        <CustomBentoGrid className="gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+        <CustomBentoGrid className="gap-3 sm:gap-4 md:gap-6 lg:gap-8 mt-10">
           {/* Hero Section */}
           <CustomBentoItem
             colSpan={2}
             rowSpan={2}
-            className="min-h-[40vh] sm:min-h-[50vh] lg:min-h-[60vh] overflow-hidden relative group"
+            className="min-h-[40vh] sm:min-h-[50vh] lg:min-h-[50vh] overflow-hidden relative group"
           >
             {project.video ? (
               <video
@@ -88,8 +96,26 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6 md:p-8 flex flex-col justify-end">
               <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex gap-2">
-                <span className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${project.isLive ? 'bg-neutral-900/80 text-white' : 'bg-neutral-900/80 text-neutral-300'}`}>
-                  <span className={`w-1.5 h-1.5 mr-1.5 rounded-full ${project.isLive ? 'bg-emerald-400' : 'bg-neutral-400'}`} />
+                <span
+                  className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${
+                    project.isLive
+                      ? "bg-neutral-900/80 text-white"
+                      : "bg-neutral-900/80 text-neutral-300"
+                  }`}
+                >
+                  <FontAwesomeIcon
+                    icon={faWifi}
+                    className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 ${
+                      project.isLive
+                        ? "animate-pulse text-emerald-400"
+                        : "text-neutral-400"
+                    }`}
+                    style={{
+                      filter: project.isLive
+                        ? "drop-shadow(0 0 8px rgb(52 211 153 / 0.5))"
+                        : "none",
+                    }}
+                  />
                   {project.isLive ? "Activo" : "En Desarrollo"}
                 </span>
                 {project.isLive && (
@@ -97,16 +123,23 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                     href={project.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 transition-all text-white"
+                    className="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-emerald-500 hover:bg-emerald-600 transition-all text-white shadow-lg shadow-emerald-500/20"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <FontAwesomeIcon icon={faGlobe} className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5" />
+                    <FontAwesomeIcon
+                      icon={faArrowUpRightFromSquare}
+                      className="w-3 h-3 sm:w-4 sm:h-4 mr-2"
+                    />
                     Visitar Sitio
                   </a>
                 )}
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-2 sm:mb-4">{project.title}</h1>
-              <p className="text-base sm:text-lg text-neutral-200 font-light line-clamp-3 sm:line-clamp-none">{project.description}</p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-2 sm:mb-4">
+                {project.title}
+              </h1>
+              <p className="text-base sm:text-lg text-neutral-200 font-light line-clamp-3 sm:line-clamp-none">
+                {project.description}
+              </p>
             </div>
           </CustomBentoItem>
 
@@ -118,30 +151,44 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
           >
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <h3 className="text-lg sm:text-xl font-medium mb-4 sm:mb-6">Información del Proyecto</h3>
+                <h3 className="text-lg sm:text-xl font-medium mb-4 sm:mb-6">
+                  Información del Proyecto
+                </h3>
                 <div className="space-y-3 sm:space-y-4">
                   {Object.entries(project.projectInfo).map(([key, value]) => (
-                    <div key={key} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
-                      <FontAwesomeIcon 
-                        icon={getInfoIcon(key)} 
-                        className="text-neutral-400 w-3 h-3 sm:w-4 sm:h-4" 
+                    <div
+                      key={key}
+                      className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base md:text-xs"
+                    >
+                      <FontAwesomeIcon
+                        icon={getInfoIcon(key)}
+                        className="text-neutral-400 w-3 h-3 sm:w-4 sm:h-4"
                       />
-                      <span className="text-neutral-400 capitalize">{translateKey(key)}:</span>
-                      <span className="font-light">{Array.isArray(value) ? value.join(', ') : value}</span>
+                      <span className="text-neutral-400 capitalize">
+                        {translateKey(key)}:
+                      </span>
+                      <span className="font-light">
+                        {Array.isArray(value) ? value.join(", ") : value}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg sm:text-xl font-medium mb-4 sm:mb-6">Tecnologías</h3>
+                <h3 className="text-lg sm:text-xl font-medium mb-4 sm:mb-6">
+                  Tecnologías
+                </h3>
                 <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {project.technologies.map((tech) => (
-                    <div 
+                    <div
                       key={tech.name}
-                      className="flex items-center gap-2 p-2 sm:p-3 rounded-lg bg-neutral-800/50 text-sm sm:text-base"
+                      className="flex items-center gap-2 p-2 sm:p-3 rounded-lg bg-neutral-800/50 text-sm sm:text-base md:text-xs"
                     >
-                      <FontAwesomeIcon icon={tech.icon} className="text-neutral-400 w-3 h-3 sm:w-4 sm:h-4" />
+                      <FontAwesomeIcon
+                        icon={tech.icon}
+                        className="text-neutral-400 w-3 h-3 sm:w-4 sm:h-4"
+                      />
                       <span className="font-light">{tech.name}</span>
                     </div>
                   ))}
@@ -157,9 +204,13 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             <Link
               href={project.links.live}
               target="_blank"
-              className="p-2 sm:p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all"
+              className="flex items-center gap-2 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 rounded-full transition-all shadow-lg shadow-emerald-500/20 text-white font-medium"
             >
-              <FontAwesomeIcon icon={faGlobe} className="w-4 h-4 sm:w-5 sm:h-5" />
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className="w-4 h-4 sm:w-5 sm:h-5"
+              />
+              <span className="hidden sm:inline">Visitar Sitio</span>
             </Link>
           )}
         </div>
