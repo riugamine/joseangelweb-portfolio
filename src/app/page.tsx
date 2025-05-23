@@ -49,8 +49,8 @@ export default function Home() {
       }}
     >
       <Hero />
-      <About />
       <Services />
+      <About />
       <Projects />
       <Contact />
       

@@ -163,7 +163,7 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground"
           >
-            Solucionador de Problemas
+            Desarrollador web
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -172,7 +172,7 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground"
           >
-            Transformando ideas en soluciones digitales elegantes y eficientes
+            Transformando ideas en soluciones digitales atractivas
           </motion.p>
         </motion.div>
 

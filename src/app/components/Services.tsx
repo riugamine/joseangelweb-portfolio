@@ -74,10 +74,10 @@ export default function Services() {
           {services.map((service, index) => (
             <Card
               key={index}
-              className={`${service.size} py-6 group hover:shadow-lg transition-all duration-300 bg-card/30 backdrop-blur-sm border-muted relative overflow-hidden`}
+              className={`${service.size} py-6 group hover:shadow-lg transition-all duration-300 bg-primary/30 backdrop-blur-sm border-muted relative overflow-hidden`}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 bg-gradient-to-r from-primary/25 to-secondary/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 initial={false}
                 whileHover={{ scale: 1.02 }}
               />
@@ -112,7 +112,7 @@ export default function Services() {
           ))}
 
           {/* Call to Action Card */}
-          <Card className=" py-6 col-span-1 sm:col-span-2 group hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm border-muted">
+          <Card className=" py-6 col-span-1 sm:col-span-2 group hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary/50 to-secondary/50 backdrop-blur-sm border-muted">
             <CardHeader className="flex flex-col items-start">
               <CardTitle className="text-2xl font-bold flex items-center justify-between w-full text-foreground">
                 ¿Listo para Empezar?
@@ -133,7 +133,7 @@ export default function Services() {
                   />
                 </motion.a>
               </CardTitle>
-              <CardDescription className="mt-4 text-base sm:text-lg text-muted-foreground/90">
+              <CardDescription className="mt-4 text-base sm:text-lg text-white">
                 Transformemos tu visión en realidad. Agenda una consulta gratuita y descubre cómo podemos potenciar tu presencia digital.
               </CardDescription>
             </CardHeader>
@@ -146,7 +146,7 @@ export default function Services() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 group/social`}
+                    className={`flex items-center gap-2 text-white hover:text-primary transition-colors duration-300 group/social`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
