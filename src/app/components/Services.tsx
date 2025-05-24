@@ -1,54 +1,73 @@
-'use client'
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faCreditCard, faLocationDot, faCode, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { useState } from 'react'
-import { socialLinks } from '../lib/data'
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faShoppingCart,
+  faCreditCard,
+  faLocationDot,
+  faCode,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
+import { socialLinks } from "../lib/data";
+import { useTranslation } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/translations";
+
 export default function Services() {
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 0.2], [0, -100])
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
+  const { t, language } = useTranslation();
 
-  const services = [
-    {
-      icon: faShoppingCart,
-      title: 'Soluciones E-commerce',
-      description: 'Transformo tu negocio con componentes personalizados que mejoran la experiencia de compra.',
-      features: ['Carritos inteligentes', 'Catálogos dinámicos', 'Gestión de inventario'],
-      size: 'col-span-1 md:col-span-2',
-      color: 'bg-blue-900/10 text-blue-500'
-    },
-    {
-      icon: faCreditCard,
-      title: 'Integración de Pagos',
-      description: 'Implementación segura y eficiente de sistemas de pago que generan confianza.',
-      features: ['PayPal', 'Stripe', 'Soluciones locales'],
-      color: 'bg-green-900/10 text-green-500'
-    },
-    {
-      icon: faLocationDot,
-      title: 'Geolocalización',
-      description: 'Sistemas de tracking en tiempo real que optimizan la logística de tu negocio.',
-      features: ['Seguimiento en vivo', 'Mapas interactivos', 'Alertas automáticas'],
-      color: 'bg-amber-900/10 text-amber-500'
-    },
-    {
-      icon: faCode,
-      title: 'Soluciones Personalizadas',
-      description: 'Desarrollo adaptado a las necesidades específicas de tu empresa.',
-      features: ['Arquitectura escalable', 'Código mantenible', 'Optimización continua'],
-      size: 'col-span-1 md:col-span-2',
-      color: 'bg-purple-900/10 text-purple-500'
-    }
-  ]
+// ... existing code ...
+const services = [
+  {
+    icon: faShoppingCart,
+    title: t("services.ecommerce.title"),
+    description: t("services.ecommerce.description"),
+    features: translations.services.ecommerce[`features_${language}`],
+    size: "col-span-1 md:col-span-2",
+    color: "bg-blue-900/10 text-blue-500",
+  },
+  {
+    icon: faCreditCard,
+    title: t("services.payments.title"),
+    description: t("services.payments.description"),
+    features: translations.services.payments[`features_${language}`],
+    color: "bg-green-900/10 text-green-500",
+  },
+  {
+    icon: faLocationDot,
+    title: t("services.geolocation.title"),
+    description: t("services.geolocation.description"),
+    features: translations.services.geolocation[`features_${language}`],
+    color: "bg-amber-900/10 text-amber-500",
+  },
+  {
+    icon: faCode,
+    title: t("services.custom.title"),
+    description: t("services.custom.description"),
+    features: translations.services.custom[`features_${language}`],
+    size: "col-span-1 md:col-span-2",
+    color: "bg-purple-900/10 text-purple-500",
+  },
+];
 
-  // Estado para el hover del botón
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section id="services" className="relative py-24 bg-background transition-colors duration-300">
+    <section
+      id="services"
+      className="relative py-24 bg-background transition-colors duration-300"
+    >
       <motion.div style={{ y }} className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-16 text-center">
           <motion.h2
@@ -57,7 +76,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground"
           >
-            Soluciones que Transforman
+            {t("services.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -66,7 +85,7 @@ export default function Services() {
             transition={{ delay: 0.2 }}
             className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground"
           >
-            Desarrollo web enfocado en resolver problemas reales con elegancia y eficiencia
+            {t("services.subtitle")}
           </motion.p>
         </div>
 
@@ -82,7 +101,7 @@ export default function Services() {
                 whileHover={{ scale: 1.02 }}
               />
               <CardHeader>
-                <motion.div 
+                <motion.div
                   className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl ${service.color} group-hover:scale-110 transition-transform duration-300`}
                   whileHover={{ rotate: 5 }}
                 >
@@ -98,8 +117,8 @@ export default function Services() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {service.features.map((feature, i) => (
-                    <Badge 
-                      key={i} 
+                    <Badge
+                      key={i}
                       variant="outline"
                       className="bg-background/50 border-muted-foreground/20 text-foreground hover:bg-muted/50 transition-colors duration-300"
                     >
@@ -115,29 +134,26 @@ export default function Services() {
           <Card className=" py-6 col-span-1 sm:col-span-2 group hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary/50 to-secondary/50 backdrop-blur-sm border-muted">
             <CardHeader className="flex flex-col items-start">
               <CardTitle className="text-2xl font-bold flex items-center justify-between w-full text-foreground">
-                ¿Listo para Empezar?
+                {t("services.cta.title")}
                 <motion.a
                   href="#contact"
                   className="text-primary group-hover:translate-x-2 transition-transform duration-300"
-                  animate={{ 
+                  animate={{
                     scale: isHovered ? 1.2 : 1,
-                    rotate: isHovered ? 320 : 0
+                    rotate: isHovered ? 320 : 0,
                   }}
                   transition={{ type: "spring", stiffness: 500, damping: 10 }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <FontAwesomeIcon 
-                    icon={faArrowRight} 
-                    className="h-6 w-6"
-                  />
+                  <FontAwesomeIcon icon={faArrowRight} className="h-6 w-6" />
                 </motion.a>
               </CardTitle>
               <CardDescription className="mt-4 text-base sm:text-lg text-white">
-                Transformemos tu visión en realidad. Agenda una consulta gratuita y descubre cómo podemos potenciar tu presencia digital.
+                {t("services.cta.description")}
               </CardDescription>
             </CardHeader>
-            
+
             <CardContent>
               <div className="flex flex-wrap gap-4">
                 {socialLinks.map((social) => (
@@ -171,5 +187,5 @@ export default function Services() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

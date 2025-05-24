@@ -4,14 +4,17 @@ import { useState, useEffect } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faLanguage } from '@fortawesome/free-solid-svg-icons'
 import { ThemeToggle } from './ThemeToggle'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter, SheetDescription } from "@/components/ui/sheet"
+import { Switch } from "@/components/ui/switch"
+import { useTranslation } from '@/contexts/LanguageContext'
 import { socialLinks } from '../lib/data'
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const { language, toggleLanguage, t } = useTranslation()
   
-  // Detectar scroll para cambiar estilo de navbar
+  // Detect scroll to change navbar style
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -24,8 +27,6 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-
 
   return (
     <nav
@@ -51,7 +52,7 @@ export function Navbar() {
             duration={500}
             className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
-            Sobre mí
+            {t('navbar.about')}
           </ScrollLink>
           <ScrollLink
             to="services"
@@ -61,7 +62,7 @@ export function Navbar() {
             duration={500}
             className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
-            Servicios
+            {t('navbar.services')}
           </ScrollLink>
           <ScrollLink
             to="projects"
@@ -71,7 +72,7 @@ export function Navbar() {
             duration={500}
             className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
-            Proyectos
+            {t('navbar.projects')}
           </ScrollLink>
           <ScrollLink
             to="contact"
@@ -79,105 +80,78 @@ export function Navbar() {
             smooth={true}
             offset={-70}
             duration={500}
-            className={`rounded-full px-6 py-2 cursor-pointer hover:bg-primary hover:text-white transition-colors  ${
-              scrolled 
-                ? 'bg-black text-white dark:bg-white dark:text-black' 
-                : 'bg-white text-black dark:bg-gray-800 dark:text-white'
-            }`}
+            className="text-sm font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
           >
-            Contacto
+            {t('navbar.contact')}
           </ScrollLink>
+          
+          {/* Language Toggle for Desktop */}
+          <div className="flex items-center space-x-2">
+            <FontAwesomeIcon 
+              icon={faLanguage} 
+              className="h-5 w-5 text-gray-500 dark:text-gray-400" 
+            />
+            <Switch
+              checked={language === 'en'}
+              onCheckedChange={toggleLanguage}
+              aria-label="Toggle language"
+            />
+            <span className="text-sm font-medium">
+              {language.toUpperCase()}
+            </span>
+          </div>
           
           <ThemeToggle />
         </div>
 
         {/* Mobile Menu */}
-        <div className="flex items-center space-x-4 md:hidden">
-          <ThemeToggle />
-          <Sheet>
-            <SheetTrigger asChild>
-              <button aria-label="Toggle menu">
-                <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs p-6">
-              <SheetHeader className="mb-8">
-                <SheetTitle className="text-2xl font-bold">Menu</SheetTitle>
-                <SheetDescription className="text-sm text-gray-500 dark:text-gray-400">
-                  Opciones
-                </SheetDescription>
-              </SheetHeader>
+        <Sheet>
+          <SheetTrigger className="md:hidden">
+            <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+              <SheetDescription>
+                {t('navbar.menuDescription')}
+              </SheetDescription>
+            </SheetHeader>
+            <div className="mt-6 flex flex-col space-y-4 p-4">
+              <Link href="/#about" className="text-lg">
+                {t('navbar.about')}
+              </Link>
+              <Link href="/#services" className="text-lg">
+                {t('navbar.services')}
+              </Link>
+              <Link href="/#projects" className="text-lg">
+                {t('navbar.projects')}
+              </Link>
+              <Link href="/#contact" className="text-lg">
+                {t('navbar.contact')}
+              </Link>
               
-              <div className="flex flex-col space-y-12">
-                {/* Enlaces de navegación */}
-                <div className="flex flex-col space-y-8">
-                  <ScrollLink
-                    to="about"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    className="text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer"
-                  >
-                    Sobre mí
-                  </ScrollLink>
-                  <ScrollLink
-                    to="services"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    className="text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer"
-                  >
-                    Servicios
-                  </ScrollLink>
-                  <ScrollLink
-                    to="projects"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    className="text-lg font-medium hover:text-blue-500 transition-colors cursor-pointer"
-                  >
-                    Proyectos
-                  </ScrollLink>
-                </div>
-
-                {/* Separador */}
-                <div className="h-px w-full bg-gray-100 dark:bg-gray-800" />
-
-                {/* Redes sociales */}
-                <div className="space-y-6">
-                  <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    CONECTA CONMIGO
-                  </h3>
-                  <div className="grid grid-cols-2 gap-6">
-                    {socialLinks.map((social) => (
-                      <a
-                        key={social.name}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center space-x-3 transition-colors hover:opacity-80 ${social.color}`}
-                      >
-                        <FontAwesomeIcon icon={social.icon} className="h-5 w-5" />
-                        <span className="text-sm">{social.name}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Botón de contacto */}
-                <Link
-                  href="#contact"
-                  className="mt-auto w-full rounded-lg bg-blue-500 py-3 text-center text-white transition-colors hover:bg-blue-600"
-                >
-                  Contacto
-                </Link>
+              {/* Language Toggle for Mobile */}
+              <div className="flex items-center space-x-2 pt-4">
+                <FontAwesomeIcon 
+                  icon={faLanguage} 
+                  className="h-5 w-5 text-gray-500 dark:text-gray-400" 
+                />
+                <Switch
+                  checked={language === 'en'}
+                  onCheckedChange={toggleLanguage}
+                  aria-label="Toggle language"
+                />
+                <span className="text-sm font-medium">
+                  {language.toUpperCase()}
+                </span>
               </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+              
+              <div className="pt-4">
+                <ThemeToggle />
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </nav>
   )

@@ -6,10 +6,11 @@ import Link from "next/link";
 import { projects, notifications } from "../lib/data";
 import { AnimatedList } from "@/components/magicui/animated-list";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from '@/contexts/LanguageContext';
 
 export default function Projects() {
+  const { t } = useTranslation();
 
-  // Animaciones para los proyectos
   const projectVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -27,7 +28,6 @@ export default function Projects() {
     },
   };
 
-
   return (
     <section
       id="projects"
@@ -42,7 +42,7 @@ export default function Projects() {
             transition={{ duration: 0.5 }}
             className="mb-4 text-3xl font-bold md:text-4xl dark:text-white"
           >
-            Proyectos Destacados
+            {t('projects.title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -51,12 +51,10 @@ export default function Projects() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300"
           >
-            Una selección de mis trabajos recientes en desarrollo web y
-            aplicaciones.
+            {t('projects.description')}
           </motion.p>
         </div>
 
-        {/* Grid de proyectos con diseño adaptativo */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -98,16 +96,11 @@ export default function Projects() {
                     }`}
                   >
                     <span
-                      className={`w-2 h-2 mr-1.5 rounded-full ${
-                        project.isLive
-                          ? "animate-pulse bg-green-500"
-                          : "bg-red-500"
-                      }`}
+                      className={`w-2 h-2 mr-1.5 rounded-full ${project.isLive ? "animate-pulse bg-green-500" : "bg-red-500"}`}
                     ></span>
-                    {project.isLive ? "Live" : "Offline"}
+                    {project.isLive ? t('projects.status.live') : t('projects.status.offline')}
                   </span>
                 </div>
-                {/* Project Info Overlay */}
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                   <h3 className="text-xl font-bold text-white mb-3">
                     {project.title}

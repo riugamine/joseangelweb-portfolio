@@ -10,19 +10,14 @@ export default function SplineScene() {
 
   // Función para manejar cuando la escena está lista
   const onLoad = (splineApp: Application) => {
-    console.log('Spline scene loaded')
     
     // Obtener el objeto Head
     const robotHead = splineApp.findObjectByName('Head')
     if (robotHead) {
       headRef.current = robotHead
-      console.log('Robot head found')
+      
     }
 
-    // Habilitar eventos de Spline
-    splineApp.addEventListener('mouseDown', () => {
-      console.log('Spline events enabled')
-    })
   }
 
   // Efecto para manejar solo el seguimiento de la cabeza

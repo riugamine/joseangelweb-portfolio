@@ -19,27 +19,15 @@ import {
   CustomBentoItem,
 } from "@/components/magicui/CustomBentoGrid";
 import { Project } from "@/app/lib/data";
+import { useTranslation } from '@/contexts/LanguageContext';
 
 interface ProjectDetailsProps {
   project: Project;
 }
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {
-  // Helper function for translations
-  function translateKey(key: string): string {
-    const translations: Record<string, string> = {
-      duration: "Duración",
-      role: "Rol",
-      team: "Equipo",
-      client: "Cliente",
-      industry: "Industria",
-      startDate: "Fecha de Inicio",
-      completionDate: "Fecha de Finalización",
-    };
-    return translations[key] || key;
-  }
+  const { t } = useTranslation();
 
-  // Helper function to get icon for project info
   function getInfoIcon(key: string) {
     const icons = {
       duration: faClock,
@@ -61,16 +49,12 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             href="/"
             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all text-sm sm:text-base"
           >
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              className="w-3 h-3 sm:w-4 sm:h-4"
-            />
-            <span>Volver</span>
+            <FontAwesomeIcon icon={faArrowLeft} className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span>{t('projects.backButton')}</span>
           </Link>
         </nav>
 
         <CustomBentoGrid className="gap-3 sm:gap-4 md:gap-6 lg:gap-8 mt-10">
-          {/* Hero Section */}
           <CustomBentoItem
             colSpan={2}
             rowSpan={2}
@@ -116,7 +100,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                         : "none",
                     }}
                   />
-                  {project.isLive ? "Activo" : "En Desarrollo"}
+                  {project.isLive ? t('projects.status.live') : t('projects.status.offline')}
                 </span>
                 {project.isLive && (
                   <a
@@ -130,7 +114,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       icon={faArrowUpRightFromSquare}
                       className="w-3 h-3 sm:w-4 sm:h-4 mr-2"
                     />
-                    Visitar Sitio
+                    {t('projects.visitButton')}
                   </a>
                 )}
               </div>
@@ -143,7 +127,6 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             </div>
           </CustomBentoItem>
 
-          {/* Project Info */}
           <CustomBentoItem
             colSpan={1}
             rowSpan={2}
@@ -152,7 +135,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             <div className="space-y-6 sm:space-y-8">
               <div>
                 <h3 className="text-lg sm:text-xl font-medium mb-4 sm:mb-6">
-                  Información del Proyecto
+                  {t('projects.projectInfo.title')}
                 </h3>
                 <div className="space-y-3 sm:space-y-4">
                   {Object.entries(project.projectInfo).map(([key, value]) => (
@@ -165,7 +148,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                         className="text-neutral-400 w-3 h-3 sm:w-4 sm:h-4"
                       />
                       <span className="text-neutral-400 capitalize">
-                        {translateKey(key)}:
+                        {t(`projects.projectInfo.${key}`)}:
                       </span>
                       <span className="font-light">
                         {Array.isArray(value) ? value.join(", ") : value}
@@ -177,43 +160,23 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
               <div>
                 <h3 className="text-lg sm:text-xl font-medium mb-4 sm:mb-6">
-                  Tecnologías
+                  {t('projects.technologies.title')}
                 </h3>
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                  {project.technologies.map((tech) => (
-                    <div
-                      key={tech.name}
-                      className="flex items-center gap-2 p-2 sm:p-3 rounded-lg bg-neutral-800/50 text-sm sm:text-base md:text-xs"
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      className={`inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm ${tech.color} bg-white/10`}
                     >
-                      <FontAwesomeIcon
-                        icon={tech.icon}
-                        className="text-neutral-400 w-3 h-3 sm:w-4 sm:h-4"
-                      />
-                      <span className="font-light">{tech.name}</span>
-                    </div>
+                      <FontAwesomeIcon icon={tech.icon} className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5" />
+                      {tech.name}
+                    </span>
                   ))}
                 </div>
               </div>
             </div>
           </CustomBentoItem>
         </CustomBentoGrid>
-
-        {/* Actions */}
-        <div className="fixed bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 flex gap-3 sm:gap-4 z-50">
-          {project.links.live && (
-            <Link
-              href={project.links.live}
-              target="_blank"
-              className="flex items-center gap-2 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 rounded-full transition-all shadow-lg shadow-emerald-500/20 text-white font-medium"
-            >
-              <FontAwesomeIcon
-                icon={faArrowUpRightFromSquare}
-                className="w-4 h-4 sm:w-5 sm:h-5"
-              />
-              <span className="hidden sm:inline">Visitar Sitio</span>
-            </Link>
-          )}
-        </div>
       </div>
     </div>
   );

@@ -3,22 +3,23 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { socialLinks } from "../lib/data";
-
-const navLinks = [
-  { name: "Sobre Mí", href: "/#about" },
-  { name: "Servicios", href: "/#services" },
-  { name: "Proyectos", href: "/#projects" },
-  { name: "Contacto", href: "/#contact" },
-];
+import { useTranslation } from '@/contexts/LanguageContext';
 
 export function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
+
+  const navLinks = [
+    { name: t('navbar.about'), href: "/#about" },
+    { name: t('navbar.services'), href: "/#services" },
+    { name: t('navbar.projects'), href: "/#projects" },
+    { name: t('navbar.contact'), href: "/#contact" },
+  ];
 
   return (
     <footer className="bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Logo y descripción */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center">
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
@@ -26,8 +27,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-md text-gray-600 dark:text-gray-300">
-              Desarrollador web freelance especializado en soluciones
-              e-commerce, integración de pagos y sistemas de geolocalización.
+              {t('footer.description')}
             </p>
             <div className="mt-6 flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -45,11 +45,10 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Enlaces rápidos y contacto en dos columnas */}
           <div className="grid grid-cols-2 gap-8 sm:gap-6">
             <div>
               <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                Enlaces Rápidos
+                {t('footer.quickLinks.title')}
               </h3>
               <ul className="space-y-3">
                 {navLinks.map((link, index) => (
@@ -67,11 +66,11 @@ export function Footer() {
 
             <div>
               <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                Contacto
+                {t('footer.contact.title')}
               </h3>
               <ul className="space-y-3">
                 <li className="text-gray-600 dark:text-gray-300">
-                  Margarita, Venezuela
+                  {t('contact.locationValue')}
                 </li>
                 <li>
                   <a
@@ -96,7 +95,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
           <p className="text-center text-gray-500 dark:text-gray-400">
-            © {currentYear} JoseAngelWeb. Todos los derechos reservados.
+            © {currentYear} JoseAngelWeb. {t('footer.copyright')}
           </p>
         </div>
       </div>

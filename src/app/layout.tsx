@@ -3,6 +3,7 @@ import { Montserrat, Poppins } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Providers } from './providers'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
 // Prevenir la inyección automática de CSS de FontAwesome
 config.autoAddCss = false
@@ -24,7 +25,9 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body className={`${mont.variable} ${pop.variable}`}>
         <Providers>
+          <LanguageProvider>
             {children}
+          </LanguageProvider>
         </Providers>
       </body>
     </html>
