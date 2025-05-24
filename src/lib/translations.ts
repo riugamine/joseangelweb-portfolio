@@ -56,6 +56,10 @@ export const translations = {
       es: 'Transformando ideas en soluciones digitales atractivas',
       en: 'Transforming ideas into attractive digital solutions'
     },
+    bio: {
+      es: 'Desarrollador web freelance especializado en transformarproblemas complejos en soluciones elegantes. Mi enfoque combinala precisión técnica con un diseño minimalista inspirado en Apple, creando experiencias digitales que no solo funcionan perfectamente, sino que también son intuitivas y agradables de usar.',
+      en: 'Freelance web developer specialized in transforming complex problems into elegant solutions. My approach combines technical precision with a minimalistic design inspired by Apple, creating digital experiences that not only work flawlessly but also are intuitive and enjoyable to use.'
+    },
     personalInfo: {
       age: {
         es: 'Edad',

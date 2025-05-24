@@ -23,6 +23,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { useTranslation } from "@/contexts/LanguageContext";
 // Hook personalizado para detectar clics fuera del elemento
 const useClickOutside = (
   ref: React.RefObject<HTMLElement>,
@@ -45,6 +46,7 @@ export default function About() {
   const [showInfo, setShowInfo] = useState(false);
   const { scrollYProgress } = useScroll();
   const infoCardRef = useRef<HTMLDivElement>(null);
+  const { t, language } = useTranslation();
   
   useClickOutside(infoCardRef as React.RefObject<HTMLElement>, () => {
     if (showInfo) setShowInfo(false);
@@ -132,7 +134,6 @@ export default function About() {
     },
   ];
   const getIconForKey = (key: string) => {
-    // 
     const iconMap: { [key: string]: IconDefinition } = {
       edad: faClock,
       sexo: faVenusMars,
@@ -140,7 +141,7 @@ export default function About() {
       colorOjos: faEye,
       hobbies: faHeart
     };
-  
+    
     return iconMap[key] || faUser; // Retorna faUser como icono por defecto
   };
   return (
@@ -163,7 +164,7 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground"
           >
-            Desarrollador web
+            {t('about.title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -172,7 +173,7 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground"
           >
-            Transformando ideas en soluciones digitales atractivas
+            {t('about.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -260,12 +261,7 @@ export default function About() {
                 variants={itemVariants}
                 className="text-base sm:text-lg text-muted-foreground leading-relaxed"
               >
-                Desarrollador web freelance especializado en transformar
-                problemas complejos en soluciones elegantes. Mi enfoque combina
-                la precisión técnica con un diseño minimalista inspirado en
-                Apple, creando experiencias digitales que no solo funcionan
-                perfectamente, sino que también son intuitivas y agradables de
-                usar.
+                {t('about.bio')}
               </motion.p>
 
               <ScrollArea className="h-[calc(80%-200px)] rounded-md border p-4">
