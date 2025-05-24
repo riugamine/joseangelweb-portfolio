@@ -17,17 +17,21 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const t = (key: string): string => {
     const keys = key.split('.')
-    let result: any = translations
+    // Ensure translations are properly typed using TranslationValue
+    let result: TranslationValue = translations
 
     for (const k of keys) {
       if (result && typeof result === 'object' && k in result) {
-        result = result[k]
+        result = result[k] as TranslationValue
       } else {
         return key
       }
     }
 
-    return typeof result === 'object' ? result[language] : key
+    if (typeof result === 'object' && 'es' in result && 'en' in result) {
+      return result[language] as string;
+    }
+    return key;
   }
 
   return (
@@ -43,4 +47,9 @@ export function useTranslation() {
     throw new Error('useTranslation must be used within a LanguageProvider')
   }
   return context
+}
+
+// Define a type for nested translation objects
+type TranslationValue = {
+  [key: string]: string | string[] | TranslationValue | { es: string; en: string }
 }

@@ -6,10 +6,9 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faLanguage } from '@fortawesome/free-solid-svg-icons'
 import { ThemeToggle } from './ThemeToggle'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter, SheetDescription } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from "@/components/ui/sheet"
 import { Switch } from "@/components/ui/switch"
 import { useTranslation } from '@/contexts/LanguageContext'
-import { socialLinks } from '../lib/data'
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const { language, toggleLanguage, t } = useTranslation()

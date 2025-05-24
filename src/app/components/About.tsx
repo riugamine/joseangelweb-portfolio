@@ -46,7 +46,7 @@ export default function About() {
   const [showInfo, setShowInfo] = useState(false);
   const { scrollYProgress } = useScroll();
   const infoCardRef = useRef<HTMLDivElement>(null);
-  const { t, language } = useTranslation();
+  const { t } = useTranslation();
   
   useClickOutside(infoCardRef as React.RefObject<HTMLElement>, () => {
     if (showInfo) setShowInfo(false);
