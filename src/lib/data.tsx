@@ -112,7 +112,7 @@ export const projects: Project[] = [
       { name: "Cloudinary", icon: faImage, color: "text-purple-500" }
     ],
     projectInfo: {
-      duration: "3 meses",
+      duration: "1 semana",
       role: "Full Stack Developer",
       team: ["José Angel", "UI Designer"],
       client: "Andrea's Photography",
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     ],
     links: {
       live: "https://andreagsfoto.com",
-      github: "https://github.com/yourusername/andreagsfoto"
+      github: "https://github.com/riugamine/andreagsfoto"
     },
     featured: true,
     isLive: true,
@@ -198,7 +198,7 @@ export const projects: Project[] = [
       { name: "Resend", icon: faEnvelope, color: "text-green-500" }
     ],
     projectInfo: {
-      duration: "2 meses",
+      duration: "1 mes",
       role: "Full Stack Developer",
       client: "TecnoCarlos",
       industry: "Seguridad",
@@ -264,7 +264,7 @@ export const projects: Project[] = [
     },
     links: {
       live: "https://tecnocarlove.com",
-      github: "https://github.com/username/tecnocarlos"
+      github: "https://github.com/riugamine/tecnocarlosve"
     },
     isLive: true,
     slug: 'tecnocarlosve'
@@ -282,7 +282,7 @@ export const projects: Project[] = [
       { name: "React Hook Form", icon: faCheckCircle, color: "text-green-500" }
     ],
     projectInfo: {
-      duration: "3 meses",
+      duration: "1 mes",
       role: "Frontend Developer",
       client: "ExpiTour Margarita",
       industry: "Turismo",
@@ -338,7 +338,7 @@ export const projects: Project[] = [
     },
     links: {
       live: "https://expitourmargarita.com",
-      github: "https://github.com/username/expitour"
+      github: "https://github.com/riugamine/expitourmargarita"
     },
     isLive: true,
     slug: 'expitourmargarita'
@@ -355,7 +355,7 @@ export const projects: Project[] = [
       { name: "Cloudinary", icon: faCloud, color: "text-blue-400" }
     ],
     projectInfo: {
-      duration: "2.5 meses",
+      duration: "1 mes",
       role: "Frontend Developer",
       client: "ViviFit",
       industry: "Fitness & Salud",
@@ -421,7 +421,7 @@ export const projects: Project[] = [
     },
     links: {
       live: "https://byvivifit.com",
-      github: "https://github.com/username/vivifit"
+      github: "https://github.com/riugamine/byvivifit"
     },
     featured: true,
     isLive: false,
@@ -441,7 +441,7 @@ export const projects: Project[] = [
       { name: "Tailwind CSS", icon: faPalette, color: "text-cyan-500" }
     ],
     projectInfo: {
-      duration: "4 meses",
+      duration: "2 meses",
       role: "Full Stack Developer",
       client: "Astro Venezuela",
       industry: "E-commerce",
@@ -522,10 +522,10 @@ export const projects: Project[] = [
     },
     links: {
       live: "https://astrovenezuela.com",
-      github: "https://github.com/username/astrovenezuela"
+      github: "https://github.com/riugamine/astrovenezuela"
     },
     featured: true,
-    isLive: false,
+    isLive: true,
     slug: 'astrovenezuela'
   }
 ]

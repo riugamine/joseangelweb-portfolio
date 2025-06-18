@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { projects, notifications } from "../lib/data";
+import { projects, notifications } from "../../lib/data";
 import { AnimatedList } from "@/components/magicui/animated-list";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from '@/contexts/LanguageContext';

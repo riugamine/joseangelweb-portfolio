@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
-import { socialLinks } from "../lib/data";
+import { socialLinks } from "../../lib/data";
 import { useTranslation } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
 

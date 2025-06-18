@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects } from "@/app/lib/data";
+import { projects } from "@/lib/data";
 import ProjectDetails from "@/app/components/ProjectDetails";
 
 type PageProps = {

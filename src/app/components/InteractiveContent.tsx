@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { socialLinks } from '../lib/data'
+import { socialLinks } from '../../lib/data'
 import { useTranslation } from '@/contexts/LanguageContext'
 
 export default function InteractiveContent() {

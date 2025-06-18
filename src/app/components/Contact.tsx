@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { socialLinks } from '../lib/data'
+import { socialLinks } from '../../lib/data'
 import { RetroGrid } from "@/components/magicui/retro-grid";
 export default function Contact() {
   // Hook para detectar el tema actual (claro/oscuro)

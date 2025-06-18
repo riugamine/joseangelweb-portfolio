@@ -18,7 +18,7 @@ import {
   CustomBentoGrid,
   CustomBentoItem,
 } from "@/components/magicui/CustomBentoGrid";
-import { Project } from "@/app/lib/data";
+import { Project } from "@/lib/data";
 import { useTranslation } from '@/contexts/LanguageContext';
 
 interface ProjectDetailsProps {

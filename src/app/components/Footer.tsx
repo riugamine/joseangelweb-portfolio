@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { socialLinks } from "../lib/data";
+import { socialLinks } from "../../lib/data";
 import { useTranslation } from '@/contexts/LanguageContext';
 
 export function Footer() {
